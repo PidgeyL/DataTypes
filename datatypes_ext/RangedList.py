@@ -22,14 +22,18 @@ class RangedList():
 
     def get(self, index):
         _range = self._get_id(index)
-        if _range:
+        if _range is not None:
             return self._data[_range]
         else:
             return self.default
 
 
+    def get_range(self):
+        return list(sorted(self._data.keys()))
+
+
     def _get_id(self, index):
-        ranges = list(sorted(self._data.keys()))
+        ranges = self.get_range()
         _range = None
         for i in ranges:
             if i <= index:
